@@ -1,0 +1,324 @@
+{#{% extends 'cp/index.html' %}#}
+{#{% block body %}#}
+{##}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Course Provider Profile</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <style>#}
+{#    body {#}
+{#      background: linear-gradient(120deg, #ce94de 0%, #b7e0f7 100%);#}
+{#      min-height: 100vh;#}
+{#    }#}
+{#    .card {#}
+{#      border: none;#}
+{#      border-radius: 1.2rem;#}
+{#      box-shadow: 0 8px 28px rgba(130, 100, 160, 0.12);#}
+{#    }#}
+{#    .profile-photo {#}
+{#      width: 120px;#}
+{#      height: 120px;#}
+{#      object-fit: cover;#}
+{#      border-radius: 50%;#}
+{#      border: 4px solid #7e57c2;#}
+{#      box-shadow: 0 4px 18px #ce94de70;#}
+{#      display: block;#}
+{#      margin-left: auto;#}
+{#      margin-right: auto;#}
+{#      background: #fff;#}
+{#    }#}
+{#    .upload-label {#}
+{#      display: block;#}
+{#      text-align: center;#}
+{#      color: #7e57c2;#}
+{#      font-size: 0.95em;#}
+{#      font-weight: 500;#}
+{#      cursor: pointer;#}
+{#      margin-top: 0.3rem;#}
+{#    }#}
+{#    .profile-title {#}
+{#      color: #7e57c2;#}
+{#      font-weight: bold;#}
+{#      letter-spacing: 0.5px;#}
+{#    }#}
+{#    .profile-label {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 500;#}
+{#    }#}
+{#    .profile-value {#}
+{#      color: #333;#}
+{#      font-weight: 500;#}
+{#    }#}
+{#    .action-btn {#}
+{#      background: #7e57c2;#}
+{#      color: #f8f8ff;#}
+{#      border-radius: .5rem;#}
+{#      font-weight: bold;#}
+{#    }#}
+{#    .action-btn:hover {#}
+{#      background: #ce94de;#}
+{#      color: #333;#}
+{#    }#}
+{#    .proof-img {#}
+{#      max-width: 120px;#}
+{#      max-height: 90px;#}
+{#      border-radius: 0.5rem;#}
+{#      object-fit: cover;#}
+{#      border: 2px solid #ce94de;#}
+{#      margin-right: 1rem;#}
+{#    }#}
+{#    input[type="file"] {#}
+{#      display: none;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{#  <div class="container py-5">#}
+{#    <div class="row justify-content-center">#}
+{#      <div class="col-lg-7 col-md-9">#}
+{#        <div class="card px-4 py-4">#}
+{#          <div class="text-center">#}
+{#            <!-- Profile photo & upload -->#}
+{#            <img id="profilePic" src="{{ data.photo }}" height="150px" width="150px" alt="Profile Photo" class="profile-photo mb-2">#}
+{#            <form id="picForm" enctype="multipart/form-data">#}
+{#              <label for="uploadProfilePic" class="upload-label">#}
+{#                Change Profile Photo#}
+{#                <input type="file" id="uploadProfilePic" accept="image/*">#}
+{#              </label>#}
+{#            </form>#}
+{#            <h2 class="profile-title mb-2">{{ data.name }}</h2>#}
+{#            <div class="mb-3 text-secondary fw-semibold">Course Provider</div>#}
+{##}
+{##}
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{##}
+{#    {% if messages %}#}
+{#  {% for message in messages %}#}
+{#    <div class="alert alert-warning alert-dismissible fade show" role="alert">#}
+{#      {{ message }}#}
+{#      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
+{#    </div>#}
+{#  {% endfor %}#}
+{#{% endif %}#}
+{##}
+{#            <a href="/myapp/edit_cprofile/#abc" class="btn btn-outline-info action-btn btn-sm mb-3">Edit Profile</a>#}
+{#          </div>#}
+{#          <hr>#}
+{#          <div class="row">#}
+{#            <div class="col-sm-6 mb-3">#}
+{#              <span class="profile-label">Email:</span><br>#}
+{#              <span class="profile-value">{{ data.email }}</span>#}
+{#            </div>#}
+{#            <div class="col-sm-6 mb-3">#}
+{#              <span class="profile-label">Phone:</span><br>#}
+{#              <span class="profile-value">{{ data.phone }}</span>#}
+{#            </div>#}
+{#            <div class="col-sm-12 mb-3">#}
+{#              <span class="profile-label">Address:</span><br>#}
+{#              <span class="profile-value">{{ data.place }},{{ data.post }},{{ data.pin }},{{ data.district }},{{ data.state }}</span>#}
+{#            </div>#}
+{#               <div class="col-sm-6 mb-3">#}
+{#              <span class="profile-label">Dsecription:</span><br>#}
+{#              <span class="profile-value">{{ data.description }}</span>#}
+{#            </div>#}
+{#            <div class="col-sm-6 mb-3">#}
+{#              <span class="profile-label">Uploaded Proof:</span><br>#}
+{#              <img src="{{ data.proof }}" height="150px" width="150px"#}
+{#                   class="proof-img" alt="Proof Document">#}
+{#            </div>#}
+{#            <div class="col-sm-6 mb-3">#}
+{#              <span class="profile-label">Profile Photo:</span><br>#}
+{#              <img id="thumbPic" src="{{ data.photo }}" class="proof-img" alt="Profile Photo">#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{#  <!-- Bootstrap 5 JS and Icons -->#}
+{#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#  <script>#}
+{#    // Preview uploaded image in the profile circle#}
+{#    document.getElementById('uploadProfilePic').addEventListener('change', function(e) {#}
+{#      if (this.files && this.files[0]) {#}
+{#        let reader = new FileReader();#}
+{#        reader.onload = function(ev) {#}
+{#          document.getElementById('profilePic').src = ev.target.result;#}
+{#          document.getElementById('thumbPic').src = ev.target.result; // update thumbnail too#}
+{#        }#}
+{#        reader.readAsDataURL(this.files[0]);#}
+{#      }#}
+{#    });#}
+{#  </script>#}
+{#</body>#}
+{#</html>#}
+{##}
+{##}
+{#{% endblock %}#}
+
+
+
+
+{% extends 'cp/index.html' %}
+{% block body %}
+
+<style>
+  body {
+    background: linear-gradient(135deg, #c8e6e1 0%, #2d7c6e 100%);
+    min-height: 100vh;
+  }
+  .card {
+    border: none;
+    border-radius: 1.2rem;
+    box-shadow: 0 8px 28px rgba(45, 124, 110, 0.2);
+    background: #ffffff;
+  }
+  .profile-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #2d7c6e;
+    box-shadow: 0 4px 18px rgba(45, 124, 110, 0.3);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+  }
+  .upload-label {
+    display: block;
+    text-align: center;
+    color: #2d7c6e;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.3rem;
+  }
+  .profile-title {
+    color: #2d7c6e;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  .profile-label {
+    color: #2d7c6e;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .profile-value {
+    color: #333;
+    font-weight: 500;
+  }
+  .action-btn {
+    background: linear-gradient(135deg, #3d9d8c 0%, #2d7c6e 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+  }
+  .action-btn:hover {
+    background: linear-gradient(135deg, #4db3a0 0%, #3d9d8c 100%);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(45, 124, 110, 0.3);
+  }
+  .proof-img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    border: 3px solid #c8e6e1;
+    box-shadow: 0 2px 8px rgba(45, 124, 110, 0.15);
+  }
+  input[type="file"] {
+    display: none;
+  }
+  .text-secondary {
+    color: #5a9a8c !important;
+  }
+  hr {
+    border-color: #c8e6e1;
+    opacity: 0.5;
+  }
+  .alert-warning {
+    background-color: #c8e6e1;
+    border-color: #2d7c6e;
+    color: #1a4d43;
+  }
+</style>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+      <div class="card px-4 py-4">
+        <div class="text-center">
+          <!-- Profile photo & upload -->
+          <img id="profilePic" src="{{ data.photo }}" height="150px" width="150px" alt="Profile Photo" class="profile-photo mb-2">
+          <h2 class="profile-title mb-2">{{ data.name }}</h2>
+          <div class="mb-3 text-secondary fw-semibold">Course Provider</div>
+
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          <a href="/myapp/edit_cprofile/#abc" class="btn action-btn btn-sm mb-3">Edit Profile</a>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-6 mb-3">
+            <span class="profile-label">Email:</span><br>
+            <span class="profile-value">{{ data.email }}</span>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <span class="profile-label">Phone:</span><br>
+            <span class="profile-value">{{ data.phone }}</span>
+          </div>
+          <div class="col-sm-12 mb-3">
+            <span class="profile-label">Address:</span><br>
+            <span class="profile-value">{{ data.place }}, {{ data.post }}, {{ data.pin }}, {{ data.district }}, {{ data.state }}</span>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <span class="profile-label">Description:</span><br>
+            <span class="profile-value">{{ data.description }}</span>
+          </div>
+          <div class="col-sm-6 mb-3">
+            <span class="profile-label">Uploaded Proof:</span><br>
+            <img src="{{ data.proof }}" height="150px" width="150px" class="proof-img" alt="Proof Document">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap 5 JS and Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Preview uploaded image in the profile circle
+  document.getElementById('uploadProfilePic').addEventListener('change', function(e) {
+    if (this.files && this.files[0]) {
+      let reader = new FileReader();
+      reader.onload = function(ev) {
+        document.getElementById('profilePic').src = ev.target.result;
+        document.getElementById('thumbPic').src = ev.target.result; // update thumbnail too
+      }
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
+</script>
+
+{% endblock %}

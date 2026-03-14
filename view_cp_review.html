@@ -1,0 +1,485 @@
+{##}
+{#{% extends 'admin/adminindex.html' %}#}
+{#{% block body %}#}
+{##}
+{#       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <!-- DataTables CSS -->#}
+{#  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{##}
+{#  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{##}
+{#<div class="container mt-5">#}
+{#  <h2 class="mb-4">Users Review About Course Providers</h2>#}
+{##}
+{#  <table id="registrationTable" class="table table-striped table-bordered">#}
+{#    <thead>#}
+{#      <tr>#}
+{#        <th>Sl/No</th>#}
+{#        <th>Date</th>#}
+{#        <th>Name</th>#}
+{#        <th>Course Provider</th>#}
+{#        <th>Review</th>#}
+{#        <th>Rating</th>#}
+{#      </tr>#}
+{#    </thead>#}
+{##}
+{#    <tbody>#}
+{#      {% for i in data %}#}
+{#      <tr>#}
+{#        <td>{{ forloop.counter }}</td>#}
+{#        <td>{{ i.date }}</td>#}
+{#        <td>{{ i.REGISTRATION.name }}</td>#}
+{#        <td>{{ i.COURSE.CP.name }}</td>#}
+{#        <td>{{ i.review }}</td>#}
+{##}
+{#        <td>#}
+{#          {% if i.rating == "1.0" %}#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{##}
+{#          {% elif i.rating == "1.5" %}#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/half star.png" height="30">#}
+{##}
+{#          {% elif i.rating == "2.0" %}#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{##}
+{#          {% elif i.rating == "2.5" %}#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/half star.png" height="30">#}
+{##}
+{#          {% elif i.rating == "3.0" %}#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{##}
+{#          {% elif i.rating == "3.5" %}#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/half star.png" height="30">#}
+{##}
+{#          {% elif i.rating == "4.0" %}#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{##}
+{#          {% elif i.rating == "4.5" %}#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/half star.png" height="30">#}
+{##}
+{#          {% elif i.rating == "5.0" %}#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#            <img src="/static/star/full star.png" height="30">#}
+{#          {% endif %}#}
+{#        </td>#}
+{#      </tr>#}
+{#      {% endfor %}#}
+{#    </tbody>#}
+{#  </table>#}
+{#</div>#}
+{##}
+{#{% endblock %}#}
+{##}
+{##}
+{##}
+{##}
+{#{% extends 'admin/adminindex.html' %}#}
+{#{% block body %}#}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>User Review</title>#}
+{#  <!-- Bootstrap CSS -->#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <!-- DataTables CSS -->#}
+{#  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{#</head>#}
+{#<body>#}
+{#  <div class="container mt-5">#}
+{#    <h2 class="mb-4">Course Provider Review</h2>#}
+{#    <table id="registrationTable" class="table table-striped table-bordered">#}
+{#      <thead>#}
+{#        <tr>#}
+{#          <th>Sl/No</th>#}
+{#          <th>Date</th>#}
+{#          <th>Username</th>#}
+{#          <th>Course Provider</th>#}
+{#          <th>Review</th>#}
+{#          <th>Rating</th>#}
+{#        </tr>#}
+{#      </thead>#}
+{#      <tbody>#}
+{#        <!-- Sample Data Row -->#}
+{#        <tr>#}
+{#            {% for i in data %}#}
+{#          <td>{{ forloop.counter }}</td>#}
+{#          <td>{{ i.date }}</td>#}
+{#          <td>{{ i.REGISTRATION.name }}</td>#}
+{#          <td>{{ i.COURSE.CP.name}}</td>#}
+{#          <td>{{ i.review}}</td>#}
+{#          <td>{% if i.rating == "1.0" %}<img src="/static/star/full star.png" height="30px">#}
+{#              {% elif i.rating == "1.5" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/half star.png" height="30px">#}
+{#              {% elif i.rating == "2.0" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px">#}
+{#              {% elif i.rating == "2.5" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/half star.png" height="30px">#}
+{#              {% elif i.rating == "3.0" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px">#}
+{#              {% elif i.rating == "3.5" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/half star.png" height="30px">#}
+{#              {% elif i.rating == "4.0" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px">#}
+{#              {% elif i.rating == "4.5" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/half star.png" height="30px">#}
+{#              {% elif i.ratig == "5.0" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px">#}
+{#              {% endif %}#}
+{#          </td>#}
+{#        </tr>#}
+{#     {% endfor %}#}
+{#        <!-- Add more rows dynamically from backend -->#}
+{#      </tbody>#}
+{#    </table>#}
+{#  </div>#}
+{##}
+{#  <!-- Scripts -->#}
+{#  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{#  <script>#}
+{#    $(document).ready(function () {#}
+{#      $('#registrationTable').DataTable();#}
+{#    });#}
+{#  </script>#}
+{#</body>#}
+{#</html>#}
+{##}
+{##}
+{##}
+{#{% endblock %}#}
+
+
+
+
+{% extends 'admin/adminindex.html' %}
+{% block body %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* White background for content area */
+    .content-wrapper {
+      background: white;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    /* Main container styling */
+    .reviews-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(107, 63, 160, 0.1);
+      padding: 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      border: 2px solid #F0E6FF;
+    }
+
+    /* Header banner */
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .page-header h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #6B3FA0, #8B5FBF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .page-header h2 i {
+      background: linear-gradient(135deg, #6B3FA0, #8B5FBF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2.2rem;
+    }
+
+    .page-subtitle {
+      color: #8B5FBF;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* Reviews badge */
+    .status-badge {
+      background: linear-gradient(135deg, #6B3FA0, #8B5FBF);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .status-badge i {
+      margin-right: 5px;
+    }
+
+    /* DataTable header styling */
+    #registrationTable thead th {
+      background: linear-gradient(135deg, #6B3FA0, #8B5FBF) !important;
+      color: white !important;
+      border: none !important;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 15px !important;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      vertical-align: middle;
+    }
+
+    /* Table styling */
+    #registrationTable {
+      border-collapse: separate !important;
+      border-spacing: 0 !important;
+      width: 100% !important;
+    }
+
+    /* Zebra striping */
+    #registrationTable tbody tr {
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    #registrationTable tbody tr:nth-child(odd) {
+      background-color: #F0E6FF;
+    }
+
+    /* Hover highlight */
+    #registrationTable tbody tr:hover {
+      background-color: #E8D9FF !important;
+      transform: scale(1.002);
+      box-shadow: 0 4px 12px rgba(107, 63, 160, 0.15);
+    }
+
+    #registrationTable tbody td {
+      vertical-align: middle;
+      padding: 12px !important;
+      border-color: #E8D9FF !important;
+    }
+
+    /* Strong name styling */
+    #registrationTable tbody td strong {
+      color: #4A2870;
+      font-weight: 600;
+    }
+
+    /* Star rating styling */
+    .star-rating {
+      display: inline-flex;
+      gap: 2px;
+      align-items: center;
+    }
+
+    .star-rating img {
+      width: 25px;
+      height: 25px;
+      filter: drop-shadow(0 2px 4px rgba(107, 63, 160, 0.2));
+    }
+
+    /* Review text styling */
+    .review-text {
+      max-width: 300px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #4A2870;
+      line-height: 1.4;
+    }
+
+    /* DataTables controls */
+    .dataTables_wrapper .dataTables_length select,
+    .dataTables_wrapper .dataTables_filter input {
+      border: 2px solid #8B5FBF;
+      border-radius: 8px;
+      padding: 5px 10px;
+      transition: all 0.3s ease;
+    }
+
+    .dataTables_wrapper .dataTables_length select:focus,
+    .dataTables_wrapper .dataTables_filter input:focus {
+      outline: none;
+      border-color: #6B3FA0;
+      box-shadow: 0 0 0 0.2rem rgba(107, 63, 160, 0.25);
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+      background: linear-gradient(135deg, #6B3FA0, #8B5FBF) !important;
+      border: none !important;
+      color: white !important;
+      border-radius: 5px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+      background: linear-gradient(135deg, #8B5FBF, #6B3FA0) !important;
+      border: none !important;
+      color: white !important;
+    }
+
+    .dataTables_wrapper .dataTables_info {
+      color: #6B3FA0;
+      font-weight: 500;
+    }
+
+    .dataTables_wrapper .dataTables_length label,
+    .dataTables_wrapper .dataTables_filter label {
+      color: #4A2870;
+      font-weight: 500;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .reviews-container {
+        padding: 1.5rem 1rem;
+      }
+
+      .page-header h2 {
+        font-size: 1.5rem;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .review-text {
+        max-width: 200px;
+      }
+    }
+  </style>
+
+  <div class="content-wrapper">
+    <div class="reviews-container">
+      <div class="page-header">
+        <h2>
+          <i class="fas fa-star"></i>
+          Users Review About Course Providers
+        </h2>
+        <div class="page-subtitle">
+          <i class="fas fa-comments"></i> Customer Feedback and Ratings
+        </div>
+      </div>
+
+      <div class="text-center">
+        <span class="status-badge">
+          <i class="fas fa-quote-left"></i>
+          User Reviews
+        </span>
+      </div>
+
+      <table id="registrationTable" class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th><i class="fas fa-hashtag"></i> Sl.No</th>
+            <th><i class="fas fa-calendar"></i> Date</th>
+            <th><i class="fas fa-user"></i> Name</th>
+            <th><i class="fas fa-building"></i> Course Provider</th>
+            <th><i class="fas fa-comment-dots"></i> Review</th>
+            <th><i class="fas fa-star"></i> Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in data %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ i.date }}</td>
+            <td><strong>{{ i.REGISTRATION.name }}</strong></td>
+            <td>{{ i.COURSE.CP.name }}</td>
+            <td><div class="review-text">{{ i.review }}</div></td>
+            <td>
+              <div class="star-rating">
+                {% if i.rating == "1.0" %}
+                  <img src="/static/star/full star.png" alt="star">
+                {% elif i.rating == "1.5" %}
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/half star.png" alt="star">
+                {% elif i.rating == "2.0" %}
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                {% elif i.rating == "2.5" %}
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/half star.png" alt="star">
+                {% elif i.rating == "3.0" %}
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                {% elif i.rating == "3.5" %}
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/half star.png" alt="star">
+                {% elif i.rating == "4.0" %}
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                {% elif i.rating == "4.5" %}
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/half star.png" alt="star">
+                {% elif i.rating == "5.0" %}
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                  <img src="/static/star/full star.png" alt="star">
+                {% endif %}
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#registrationTable').DataTable({
+        pageLength: 10,
+        order: [[1, 'desc']], // Sort by date, newest first
+        language: {
+          search: "Search Reviews:",
+          lengthMenu: "Show _MENU_ reviews per page",
+          info: "Showing _START_ to _END_ of _TOTAL_ reviews",
+          paginate: {
+            previous: "← Previous",
+            next: "Next →"
+          }
+        }
+      });
+    });
+  </script>
+
+{% endblock %}

@@ -1,0 +1,228 @@
+
+{% extends 'cp/index.html' %}
+{% block body %}
+
+    <div class="container mt-5">
+    <h2 class="mb-4">User Review</h2>
+    <table id="registrationTable" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Sl/No</th>
+          <th>Date</th>
+          <th>Username</th>
+{#          <th>Course</th>#}
+          <th>Review</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Sample Data Row -->
+        <tr>
+            {% for i in data %}
+          <td>{{ forloop.counter }}</td>
+          <td>{{ i.date }}</td>
+          <td>{{ i.REGISTRATION.name }}</td>
+{#          <td>{{ i.course}}</td>#}
+          <td>{{ i.review}}</td>
+          <td>{% if i.rating == "1.0" %}<img src="/static/star/full star.png" height="30px">
+              {% elif i.rating == "1.5" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/half star.png" height="30px">
+              {% elif i.rating == "2.0" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px">
+              {% elif i.rating == "2.5" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/half star.png" height="30px">
+              {% elif i.rating == "3.0" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px">
+              {% elif i.rating == "3.5" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/half star.png" height="30px">
+              {% elif i.rating == "4.0" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px">
+              {% elif i.rating == "4.5" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/half star.png" height="30px">
+              {% elif i.ratig == "5.0" %}<img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px"><img src="/static/star/full star.png" height="30px">
+              {% endif %}
+          </td>
+        </tr>
+     {% endfor %}
+        <!-- Add more rows dynamically from backend -->
+      </tbody>
+    </table>
+  </div>
+
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8" />#}
+{#  <title>Course Reviews</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />#}
+{#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />#}
+{#  <style>#}
+{#    body {#}
+{#      background: linear-gradient(120deg, #ce94de 0%, #b7e0f7 100%);#}
+{#      min-height: 100vh;#}
+{#    }#}
+{#    .header-title {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 700;#}
+{#      letter-spacing: 0.5px;#}
+{#    }#}
+{#    .review-card {#}
+{#      border-radius: 1.1rem;#}
+{#      box-shadow: 0 3px 22px rgba(130, 100, 160, 0.13);#}
+{#      border: none;#}
+{#      margin-bottom: 1.5rem;#}
+{#      background: rgba(248, 248, 255, 0.98);#}
+{#      transition: box-shadow 0.2s;#}
+{#    }#}
+{#    .review-card:hover {#}
+{#      box-shadow: 0 6px 30px #ce94de75;#}
+{#    }#}
+{#    .reviewer-name {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 600;#}
+{#      font-size: 1.08em;#}
+{#    }#}
+{#    .review-date {#}
+{#      color: #b7b7b7;#}
+{#      font-size: 0.93em;#}
+{#      font-style: italic;#}
+{#    }#}
+{#    .review-text {#}
+{#      color: #333;#}
+{#      font-size: 1.08em;#}
+{#      margin-bottom: 0.4em;#}
+{#    }#}
+{#    .star-rating i {#}
+{#      color: #ffcc29;#}
+{#      margin-right: 1.5px;#}
+{#    }#}
+{#    .course-label {#}
+{#      color: #b7e0f7;#}
+{#      background: #7e57c2;#}
+{#      border-radius: .5em;#}
+{#      font-size: .93em;#}
+{#      font-weight: 500;#}
+{#      padding: 0.15em 0.75em 0.15em 0.6em;#}
+{#      margin-right: 0.6em;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{#  <style>#}
+{#    body {#}
+{#      background: linear-gradient(120deg, #ce94de 0%, #b7e0f7 100%);#}
+{#      min-height: 100vh;#}
+{#    }#}
+{#    .header-title {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 700;#}
+{#      letter-spacing: 0.5px;#}
+{#    }#}
+{#    .review-card {#}
+{#      border-radius: 1.1rem;#}
+{#      box-shadow: 0 3px 22px rgba(130, 100, 160, 0.13);#}
+{#      border: none;#}
+{#      margin-bottom: 1.5rem;#}
+{#      background: rgba(248, 248, 255, 0.98);#}
+{#      transition: box-shadow 0.2s;#}
+{#    }#}
+{#    .review-card:hover {#}
+{#      box-shadow: 0 6px 30px #ce94de75;#}
+{#    }#}
+{#    .reviewer-name {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 600;#}
+{#      font-size: 1.08em;#}
+{#    }#}
+{#    .review-date {#}
+{#      color: #b7b7b7;#}
+{#      font-size: 0.93em;#}
+{#      font-style: italic;#}
+{#    }#}
+{#    .review-text {#}
+{#      color: #333;#}
+{#      font-size: 1.08em;#}
+{#      margin-bottom: 0.4em;#}
+{#    }#}
+{#    .star-rating i {#}
+{#      color: #ffcc29;#}
+{#      margin-right: 1.5px;#}
+{#    }#}
+{#    .course-label {#}
+{#      color: #b7e0f7;#}
+{#      background: #7e57c2;#}
+{#      border-radius: .5em;#}
+{#      font-size: .93em;#}
+{#      font-weight: 500;#}
+{#      padding: 0.15em 0.75em 0.15em 0.6em;#}
+{#      margin-right: 0.6em;#}
+{#    }#}
+{#  </style>#}
+{##}
+{#  <div class="container py-5">#}
+{#    <h2 class="mb-4 text-center header-title">Course Reviews</h2>#}
+{#      {% for i in data %}#}
+{#    <div class="row justify-content-center">#}
+{##}
+{#      <div class="col-lg-7 col-md-9">#}
+{#        <!-- Review card (repeat for each review in Django template) -->#}
+{#        <div class="card review-card mb-4">#}
+{#          <div class="card-body">#}
+{#            <div class="mb-1">#}
+{#              <span class="course-label">Python Programming Basics</span>#}
+{#              <span class="reviewer-name">{{ i.USER.name }}</span>#}
+{#              <span class="review-date ms-2">{{ i.date }}</span>#}
+{#            </div>#}
+{#            <div class="star-rating mb-2">#}
+{#                {% if i.rating == "0.0" %}#}
+{#                                  <i class="bi bi-star"></i>#}
+{#                                  <i class="bi bi-star"></i>#}
+{#                                  <i class="bi bi-star"></i>#}
+{#                                  <i class="bi bi-star"></i>#}
+{#                                  <i class="bi bi-star"></i>#}
+{#                    {% elif i.rating == "1.0" %}#}
+{#                                  <i class="bi bi-star-fill"></i>#}
+{##}
+{#                     <i class="bi bi-star"></i>#}
+{#                                  <i class="bi bi-star"></i>#}
+{#                                  <i class="bi bi-star"></i>#}
+{#                                  <i class="bi bi-star"></i>#}
+{##}
+{#              <i class="bi bi-star-fill"></i>#}
+{#              <i class="bi bi-star-fill"></i>#}
+{#              <i class="bi bi-star-fill"></i>#}
+{#              <i class="bi bi-star-fill"></i>#}
+{#              <i class="bi bi-star"></i>#}
+{#                {% endif %}#}
+{#            </div>#}
+{#            <div class="review-text">#}
+{#              {{ i.review }}#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="card review-card mb-4">#}
+{#          <div class="card-body">#}
+{#            <div class="mb-1">#}
+{#              <span class="course-label">Full Stack Web Development</span>#}
+{#              <span class="reviewer-name">Rahul Verma</span>#}
+{#              <span class="review-date ms-2">Jul 2, 2025</span>#}
+{#            </div>#}
+{#            <div class="star-rating mb-2">#}
+{#              <i class="bi bi-star-fill"></i>#}
+{#              <i class="bi bi-star-fill"></i>#}
+{#              <i class="bi bi-star-fill"></i>#}
+{#              <i class="bi bi-star-fill"></i>#}
+{#              <i class="bi bi-star-fill"></i>#}
+{#            </div>#}
+{#            <div class="review-text">#}
+{#              Excellent course provider! The content was well structured and up-to-date with industry trends.#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <!-- Add more review cards in your backend loop -->#}
+{#      </div>#}
+{#    </div>#}
+{#      {% endfor %}#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{##}
+{##}
+{% endblock %}

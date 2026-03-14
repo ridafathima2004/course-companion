@@ -1,0 +1,591 @@
+{##}
+{##}
+{##}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Course Provider Registration</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <style>#}
+{#    body {#}
+{#      background: linear-gradient(120deg, #ce94de 0%, #b7e0f7 100%);#}
+{#      min-height: 100vh;#}
+{#    }#}
+{#    .card {#}
+{#      border: none;#}
+{#      border-radius: 1.2rem;#}
+{#      box-shadow: 0 8px 28px rgba(130, 100, 160, 0.15);#}
+{#    }#}
+{#    .form-label {#}
+{#      font-weight: 500;#}
+{#      color: #7E57C2;#}
+{#    }#}
+{#    .form-control:focus {#}
+{#      border-color: #ce94de;#}
+{#      box-shadow: 0 0 0 0.2rem #ce94de50;#}
+{#    }#}
+{#    .register-btn {#}
+{#      background: #7e57c2;#}
+{#      color: #f8f8ff;#}
+{#      font-weight: bold;#}
+{#      letter-spacing: 1.1px;#}
+{#      border-radius: 0.5rem;#}
+{#      transition: background 0.2s;#}
+{#    }#}
+{#    .register-btn:hover {#}
+{#      background: #ce94de;#}
+{#      color: #333;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{#  <div class="container py-5">#}
+{#    <div class="row justify-content-center">#}
+{#      <div class="col-lg-7 col-md-9">#}
+{#        <div class="card px-4 py-4">#}
+{#          <h2 class="mb-3 text-center fw-bold" style="color: #7e57c2;">Course Provider Sign-Up</h2>#}
+{#          <form method="post" action="/myapp/cp_signup_post/" enctype="multipart/form-data">#}
+{#              {% csrf_token %}#}
+{#            <div class="mb-3">#}
+{#              <label for="name" class="form-label">Full Name</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-person"></i></span>#}
+{#                <input type="text" name="fullname" class="form-control" id="name" placeholder="Enter your full name" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="email" class="form-label">Email Address</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-envelope"></i></span>#}
+{#                <input type="email"  name="email" class="form-control" id="email" placeholder="Enter your email" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="phone" class="form-label">Phone Number</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-telephone"></i></span>#}
+{#                <input type="tel" name="phoneno" pattern="[0-9]{10}" class="form-control" id="phone" placeholder="10-digit number" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="place" class="form-label">Place</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text"  name="place" class="form-control" id="place" placeholder="place" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="post" class="form-label">Post</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text"  name="post" class="form-control" id="post" placeholder="post" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="pincode" class="form-label">Pin Code</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text"  name="pincode" class="form-control" id="pincode" placeholder="pincode" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="district" class="form-label">District</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text"  name="district" class="form-control" id="district" placeholder="district" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="state" class="form-label">State</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text"  name="state" class="form-control" id="state" placeholder="state" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="row mb-3">#}
+{#              <div class="col-md-6">#}
+{#                <label for="proof" class="form-label">Upload Proof</label>#}
+{#                <input type="file" name="proof" class="form-control" id="proof" required>#}
+{#              </div>#}
+{#              <div class="col-md-6">#}
+{#                <label for="photo" class="form-label">Upload Photo</label>#}
+{#                <input type="file" name="photo" class="form-control" id="photo" required>#}
+{#              </div>#}
+{#            </div>#}
+{#              <div class="mb-3">#}
+{#              <label for="description" class="form-label">Descripton</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text"  name="description" class="form-control" id="description" placeholder="description" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="password" class="form-label">Password</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-lock"></i></span>#}
+{#                <input type="password" name="password" class="form-control" id="password" minlength="6" placeholder="Create password" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-4">#}
+{#              <label for="confirmPassword" class="form-label">Confirm Password</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>#}
+{#                <input type="password" name="confirmpassword" class="form-control" id="confirmPassword" placeholder="Re-enter password" required>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="d-grid">#}
+{#              <button type="submit" class="btn register-btn btn-lg shadow">Register</button>#}
+{#            </div>#}
+{#          </form>#}
+{##}
+{#            {% for i in messages %}#}
+{#            {{ i }}#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{#</body>#}
+{#</html>#}
+  <!-- Bootstrap
+
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8">#}
+{#  <title>Registration Form</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{# #}
+{#</head>#}
+{#<body>#}
+{#  <div class="container">#}
+{#    <h2 class="mb-4">Registration Form</h2>#}
+{#    <form>#}
+{#      <div class="row mb-3">#}
+{#        <label for="name" class="col-sm-4 ">Full Name</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="name" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="email" class="col-sm-4 ">Email address</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="email" class="form-control" id="email" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="phone" class="col-sm-4 ">Phone Number</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="tel" pattern="[0-9]{10}" class="form-control" id="phone" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="address" class="col-sm-4 ">Address</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="address" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="post" class="col-sm-4 ">Post</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="post" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#       <div class="row mb-3">#}
+{#        <label for="pincode" class="col-sm-4 ">Pincode</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" pattern="[0-9]{6}" class="form-control" id="pincode" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="district" class="col-sm-4 ">District</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="district" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="state" class="col-sm-4 ">State</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="text" class="form-control" id="state" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#       <div class="row mb-3">#}
+{#        <label for="proof" class="col-sm-4 ">Upload Proof</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="file" class="form-control" id="proof" accept="image/*" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="photo" class="col-sm-4 ">Upload Photo</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="file" class="form-control" id="photo" accept="image/*" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="password" class="col-sm-4 ">Password</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="password" class="form-control" id="password" minlength="6" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <label for="confirmPassword" class="col-sm-4 ">Confirm Password</label>#}
+{#        <div class="col-sm-8">#}
+{#          <input type="password" class="form-control" id="confirmPassword" required>#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="row mb-3">#}
+{#        <div class="offset-sm-4 col-sm-8">#}
+{#          <button type="submit" class="btn btn-primary">Register</button>#}
+{#        </div>#}
+{#      </div>#}
+{#    </form>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Course Provider Registration</title>
+
+<!-- Bootstrap CSS -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Course Provider Registration</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body{
+  background: linear-gradient(135deg,#e9d5ff,#dbeafe);
+  min-height:100vh;
+  font-family:"Segoe UI",sans-serif;
+}
+
+.card{
+  border:none;
+  border-radius:1.2rem;
+  box-shadow:0 10px 35px rgba(0,0,0,0.12);
+}
+
+.form-label{
+  font-weight:600;
+  color:#4c1d95;
+}
+
+.input-group-text{
+  background:#ede9fe;
+  border:none;
+  color:#6d28d9;
+}
+
+.form-control,.form-select{
+  border-radius:0.6rem;
+}
+
+.form-control:focus,.form-select:focus{
+  border-color:#7c3aed;
+  box-shadow:0 0 0 0.2rem rgba(124,58,237,.25);
+}
+
+.register-btn{
+  background:linear-gradient(135deg,#7c3aed,#4f46e5);
+  color:#fff;
+  font-weight:600;
+  padding:.8rem;
+  border-radius:.6rem;
+}
+
+.register-btn:hover{
+  box-shadow:0 8px 20px rgba(79,70,229,.4);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container py-5">
+<div class="row justify-content-center">
+<div class="col-lg-8 col-md-10">
+
+<div class="card p-4 p-md-5">
+<h2 class="text-center mb-4" style="color:#4c1d95;">Course Provider Registration</h2>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endfor %}
+{% endif %}
+
+
+<form method="post" action="/myapp/cp_signup_post/" enctype="multipart/form-data">
+{% csrf_token %}
+
+<!-- Full Name -->
+<div class="mb-3">
+<label class="form-label">Full Name</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-person"></i></span>
+<input type="text" name="fullname" class="form-control">
+</div>
+</div>
+
+<!-- Email -->
+<div class="mb-3">
+<label class="form-label">Email</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-envelope"></i></span>
+<input type="email" name="email" class="form-control">
+</div>
+</div>
+
+<!-- Phone -->
+<div class="mb-3">
+<label class="form-label">Phone Number</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-telephone"></i></span>
+<input type="tel" name="phoneno" class="form-control">
+</div>
+</div>
+
+<!-- Address -->
+<div class="row">
+<div class="col-md-6 mb-3">
+<label class="form-label">Place</label>
+<input type="text" name="place" class="form-control">
+</div>
+
+<div class="col-md-6 mb-3">
+<label class="form-label">Post</label>
+<input type="text" name="post" class="form-control">
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-6 mb-3">
+<label class="form-label">District</label>
+<input type="text" name="district" class="form-control">
+</div>
+
+<div class="col-md-6 mb-3">
+<label class="form-label">Pin Code</label>
+<input type="text" name="pincode" class="form-control">
+</div>
+</div>
+
+<!-- 29 Indian States -->
+<div class="mb-3">
+<label class="form-label">State</label>
+<select name="state" class="form-select">
+<option value="">Select State</option>
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+</select>
+</div>
+
+<!-- Upload -->
+<div class="row mb-3">
+<div class="col-md-6">
+<label class="form-label">Upload Proof</label>
+<input type="file" name="proof" class="form-control">
+</div>
+<div class="col-md-6">
+<label class="form-label">Upload Photo</label>
+<input type="file" name="photo" class="form-control">
+</div>
+</div>
+
+<!-- Description -->
+<div class="mb-3">
+<label class="form-label">Description</label>
+<textarea name="description" class="form-control" rows="3"></textarea>
+</div>
+
+<!-- Password -->
+<div class="row">
+<div class="col-md-6 mb-3">
+<label class="form-label">Password</label>
+<input type="password" name="password" class="form-control">
+</div>
+
+<div class="col-md-6 mb-4">
+<label class="form-label">Confirm Password</label>
+<input type="password" name="confirmpassword" class="form-control">
+</div>
+</div>
+
+<div class="d-grid">
+<button type="submit" class="btn register-btn btn-lg">Create Account</button>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+$(function(){
+
+function error(el,msg){
+ el.addClass("is-invalid").removeClass("is-valid");
+ el.next(".invalid-feedback").remove();
+ el.after(`<div class="invalid-feedback">${msg}</div>`);
+}
+
+function success(el){
+ el.removeClass("is-invalid").addClass("is-valid");
+ el.next(".invalid-feedback").remove();
+}
+
+/* Full Name */
+$("input[name='fullname']").on("input",function(){
+ $(this).val().length < 3
+ ? error($(this),"Minimum 3 characters required")
+ : success($(this));
+});
+
+/* ✅ STRICT Email Validation */
+$("input[name='email']").on("input",function(){
+ const email = $(this).val().toLowerCase();
+
+ const emailRegex =
+ /^[a-z0-9._%+-]+@([a-z0-9-]+\.)+[a-z]{2,}$/;
+
+ const doubleTldRegex =
+ /(\.com|\.net|\.org|\.in|\.co){2,}$/;
+
+ if(!emailRegex.test(email)){
+   error($(this),"Invalid email format");
+   return;
+ }
+
+ if(doubleTldRegex.test(email)){
+   error($(this),"Invalid domain (double .com detected)");
+   return;
+ }
+
+ success($(this));
+});
+
+/* Phone */
+$("input[name='phoneno']").on("input",function(){
+ /^[0-9]{10}$/.test($(this).val())
+ ? success($(this))
+ : error($(this),"Enter 10 digit number");
+});
+
+/* Pincode */
+$("input[name='pincode']").on("input",function(){
+ /^[0-9]{6}$/.test($(this).val())
+ ? success($(this))
+ : error($(this),"Invalid pincode");
+});
+
+/* Password */
+$("input[name='password']").on("input",function(){
+ $(this).val().length < 6
+ ? error($(this),"Minimum 6 characters")
+ : success($(this));
+});
+
+/* Confirm Password */
+$("input[name='confirmpassword']").on("input",function(){
+ $(this).val() !== $("input[name='password']").val()
+ ? error($(this),"Passwords do not match")
+ : success($(this));
+});
+
+/* Required fields */
+$("input[type='text'], textarea, select").on("blur",function(){
+ $(this).val()===""
+ ? error($(this),"This field is required")
+ : success($(this));
+});
+
+/* Prevent Submit */
+$("form").on("submit",function(e){
+ if($(".is-invalid").length > 0){
+   e.preventDefault();
+   alert("Please fix form errors before submitting");
+ }
+});
+
+});
+</script>
+
+</body>
+</html>

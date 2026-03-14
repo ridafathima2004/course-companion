@@ -1,0 +1,317 @@
+{##}
+{##}
+{#{% extends 'cp/index.html' %}#}
+{#{% block body %}#}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8" />#}
+{#  <title>Requests Received</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />#}
+{#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />#}
+{#  <style>#}
+{#    body {#}
+{#      background: linear-gradient(120deg, #ce94de 0%, #b7e0f7 100%);#}
+{#      min-height: 100vh;#}
+{#    }#}
+{#    .header-title {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 700;#}
+{#      letter-spacing: 0.5px;#}
+{#    }#}
+{#    .request-card {#}
+{#      border-radius: 1.1rem;#}
+{#      box-shadow: 0 3px 22px rgba(130, 100, 160, 0.13);#}
+{#      border: none;#}
+{#      margin-bottom: 1.5rem;#}
+{#      background: rgba(248, 248, 255, 0.99);#}
+{#    }#}
+{#    .request-card:hover {#}
+{#      box-shadow: 0 6px 30px #ce94de75;#}
+{#    }#}
+{#    .user-name {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 600;#}
+{#      font-size: 1.06em;#}
+{#    }#}
+{#    .request-date {#}
+{#      color: #b7b7b7;#}
+{#      font-size: 0.92em;#}
+{#      font-style: italic;#}
+{#    }#}
+{#    .request-msg {#}
+{#      color: #333;#}
+{#      font-size: 1.05em;#}
+{#    }#}
+{#    .email-badge {#}
+{#      color: #b7e0f7;#}
+{#      background: #7e57c2;#}
+{#      border-radius: .5em;#}
+{#      font-size: .90em;#}
+{#      font-weight: 500;#}
+{#      padding: 0.13em 0.75em 0.13em 0.6em;#}
+{#      margin-right: 0.5em;#}
+{#      text-decoration: none;#}
+{#    }#}
+{#    .course-badge {#}
+{#      background: #7e57c2;#}
+{#      color: #f8f8ff;#}
+{#      border-radius: .4em;#}
+{#      font-size: .93em;#}
+{#      font-weight: 500;#}
+{#      padding: 0.17em 0.65em;#}
+{#      margin-top: .5em;#}
+{#      display: inline-block;#}
+{#    }#}
+{#    .accept-btn, .reject-btn {#}
+{#      border-radius: .4rem;#}
+{#      min-width: 100px;#}
+{#      font-weight: 500;#}
+{#      margin-right: 0.5em;#}
+{#    }#}
+{#    .accept-btn {#}
+{#      background: #7e57c2;#}
+{#      color: #fff;#}
+{#      border: none;#}
+{#    }#}
+{#    .accept-btn:hover {#}
+{#      background: #34c759;#}
+{#      color: #fff;#}
+{#    }#}
+{#    .reject-btn {#}
+{#      background: #ffb3b3;#}
+{#      color: #b71c1c;#}
+{#      border: none;#}
+{#    }#}
+{#    .reject-btn:hover {#}
+{#      background: #e53935;#}
+{#      color: #fff;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{#  <div class="container py-5">#}
+{#    <h2 class="mb-4 text-center header-title">Requests Received</h2>#}
+{#    <div class="row justify-content-center">#}
+{#      <div class="col-lg-7 col-md-9">#}
+{##}
+{#        <!-- Request card 1 -->#}
+{#          {% for i in data %}#}
+{#        <div class="card request-card mb-4">#}
+{#          <div class="card-body">#}
+{#            <div>#}
+{#              <span class="user-name"><i class="bi bi-person"></i> {{ i.REGISTRATION.name }} </span>#}
+{#              <span class="request-date ms-3">{{ i.date }}</span>#}
+{#            </div>#}
+{#            <a href="" class="email-badge">#}
+{#              <i class="bi bi-envelope"></i>{{ i.REGISTRATION.email }}#}
+{#            </a>#}
+{#            <div class="request-msg mt-2">#}
+{#              requested to join your course {{ i.course.coursename }}#}
+{#            </div>#}
+{#            <div class="course-badge mb-2">#}
+{##}
+{#            </div>#}
+{#            <div class="mt-3">#}
+{#                {% if i.status == "pending" %}#}
+{#              <a href="/myapp/approve_creq/{{ i.id }}" class="btn accept-btn"><i class="bi bi-check-circle"></i> Accept</a>#}
+{#              <a href="/myapp/reject_creq/{{ i.id }}" class="btn reject-btn"><i class="bi bi-x-circle"></i> Reject</a>{% else %}{{ i.status }}{% endif %}#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#          {% endfor %}#}
+{##}
+{#        <!-- Request card 2 -->#}
+{#        <div class="card request-card mb-4">#}
+{#          <div class="card-body">#}
+{#            <div>#}
+{#              <span class="user-name"><i class="bi bi-person"></i> </span>#}
+{#              <span class="request-date ms-3"> </span>#}
+{#            </div>#}
+{#            <a href="" class="email-badge">#}
+{#              <i class=""></i>#}
+{#            </a>#}
+{#            <div class="request-msg mt-2">#}
+{#              requested to join your course#}
+{#            </div>#}
+{#            <div class="course-badge mb-2">#}
+{##}
+{#            </div>#}
+{#            <div class="mt-3">#}
+{#              <button class="btn accept-btn"><i class="bi bi-check-circle"></i> Accept</button>#}
+{#              <button class="btn reject-btn"><i class="bi bi-x-circle"></i> Reject</button>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <!-- Repeat above card for each request, updating .course-badge with the relevant course name -->#}
+{##}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{#{% endblock %}#}
+
+
+
+{% extends 'cp/index.html' %}
+{% block body %}
+
+<style>
+  body {
+    background: linear-gradient(135deg, #c8e6e1 0%, #2d7c6e 100%);
+    min-height: 100vh;
+  }
+  .header-title {
+    color: #2d7c6e;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .request-card {
+    border-radius: 1.1rem;
+    box-shadow: 0 3px 22px rgba(45, 124, 110, 0.2);
+    border: none;
+    margin-bottom: 1.5rem;
+    background: rgba(255, 255, 255, 0.99);
+    transition: all 0.3s ease;
+  }
+  .request-card:hover {
+    box-shadow: 0 6px 30px rgba(45, 124, 110, 0.35);
+    transform: translateY(-3px);
+  }
+  .user-name {
+    color: #2d7c6e;
+    font-weight: 600;
+    font-size: 1.06em;
+  }
+  .request-date {
+    color: #8b9da8;
+    font-size: 0.92em;
+    font-style: italic;
+  }
+  .request-msg {
+    color: #333;
+    font-size: 1.05em;
+  }
+  .email-badge {
+    color: #c8e6e1;
+    background: #2d7c6e;
+    border-radius: 0.5em;
+    font-size: 0.90em;
+    font-weight: 500;
+    padding: 0.13em 0.75em 0.13em 0.6em;
+    margin-right: 0.5em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .email-badge:hover {
+    background: #3d9d8c;
+    color: white;
+  }
+  .course-badge {
+    background: #2d7c6e;
+    color: #f8f8ff;
+    border-radius: 0.4em;
+    font-size: 0.93em;
+    font-weight: 500;
+    padding: 0.17em 0.65em;
+    margin-top: 0.5em;
+    display: inline-block;
+  }
+  .accept-btn, .reject-btn {
+    border-radius: 0.4rem;
+    min-width: 100px;
+    font-weight: 500;
+    margin-right: 0.5em;
+    transition: all 0.3s ease;
+  }
+  .accept-btn {
+    background: linear-gradient(135deg, #3d9d8c 0%, #2d7c6e 100%);
+    color: #fff;
+    border: none;
+  }
+  .accept-btn:hover {
+    background: linear-gradient(135deg, #34c759 0%, #28a745 100%);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .reject-btn {
+    background: #e8a5a5;
+    color: #b71c1c;
+    border: none;
+  }
+  .reject-btn:hover {
+    background: #e53935;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .bi-person, .bi-envelope, .bi-check-circle, .bi-x-circle {
+    margin-right: 0.3rem;
+  }
+</style>
+
+<div class="container py-5">
+  <h2 class="mb-4 text-center header-title">Requests Received</h2>
+  <div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+
+      <!-- Request card 1 -->
+        {% for i in data %}
+      <div class="card request-card mb-4">
+        <div class="card-body">
+          <div>
+            <span class="user-name"><i class="bi bi-person"></i> {{ i.REGISTRATION.name }} </span>
+            <span class="request-date ms-3">{{ i.date }}</span>
+          </div>
+          <a href="" class="email-badge">
+            <i class="bi bi-envelope"></i>{{ i.REGISTRATION.email }}
+          </a>
+          <div class="request-msg mt-2">
+            requested to join your course {{ i.course.coursename }}
+          </div>
+          <div class="course-badge mb-2">
+
+          </div>
+          <div class="mt-3">
+              {% if i.status == "pending" %}
+            <a href="/myapp/approve_creq/{{ i.id }}" class="btn accept-btn"><i class="bi bi-check-circle"></i> Accept</a>
+            <a href="/myapp/reject_creq/{{ i.id }}" class="btn reject-btn"><i class="bi bi-x-circle"></i> Reject</a>{% else %}{{ i.status }}{% endif %}
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+
+      <!-- Request card 2 -->
+{#        <div class="card request-card mb-4">#}
+{#          <div class="card-body">#}
+{#            <div>#}
+{#              <span class="user-name"><i class="bi bi-person"></i> </span>#}
+{#              <span class="request-date ms-3"> </span>#}
+{#            </div>#}
+{#            <a href="" class="email-badge">#}
+{#              <i class=""></i>#}
+{#            </a>#}
+{#            <div class="request-msg mt-2">#}
+{#              requested to join your course#}
+{#            </div>#}
+{#            <div class="course-badge mb-2">#}
+{##}
+{#            </div>#}
+{#            <div class="mt-3">#}
+{#              <button class="btn accept-btn"><i class="bi bi-check-circle"></i> Accept</button>#}
+{#              <button class="btn reject-btn"><i class="bi bi-x-circle"></i> Reject</button>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+
+      <!-- Repeat above card for each request, updating .course-badge with the relevant course name -->
+
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}

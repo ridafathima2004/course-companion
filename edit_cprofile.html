@@ -1,0 +1,313 @@
+{#{% extends 'cp/index.html' %}#}
+{#{% block body %}#}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8" />#}
+{#  <title>Course Provider Edit Profile</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />#}
+{#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />#}
+{#  <style>#}
+{#    body {#}
+{#      background: linear-gradient(120deg, #ce94de 0%, #b7e0f7 100%);#}
+{#      min-height: 100vh;#}
+{#    }#}
+{#    .card {#}
+{#      border: none;#}
+{#      border-radius: 1.2rem;#}
+{#      box-shadow: 0 8px 28px rgba(130, 100, 160, 0.15);#}
+{#    }#}
+{#    .form-label {#}
+{#      font-weight: 500;#}
+{#      color: #7E57C2;#}
+{#    }#}
+{#    .form-control:focus {#}
+{#      border-color: #ce94de;#}
+{#      box-shadow: 0 0 0 0.2rem #ce94de50;#}
+{#    }#}
+{#    .save-btn {#}
+{#      background: #7e57c2;#}
+{#      color: #f8f8ff;#}
+{#      font-weight: bold;#}
+{#      letter-spacing: 1.1px;#}
+{#      border-radius: 0.5rem;#}
+{#      transition: background 0.2s;#}
+{#    }#}
+{#    .save-btn:hover {#}
+{#      background: #ce94de;#}
+{#      color: #333;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{#  <div class="container py-5">#}
+{#    <div class="row justify-content-center">#}
+{#      <div class="col-lg-7 col-md-9">#}
+{#        <div class="card px-4 py-4">#}
+{#          <h2 class="mb-3 text-center fw-bold" style="color: #7e57c2;">Edit Profile</h2>#}
+{##}
+{#          <form method="post" action="/myapp/edit_cprofile_post/" enctype="multipart/form-data">#}
+{##}
+{#              {% csrf_token %}#}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="name" class="form-label">Full Name</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-person"></i></span>#}
+{#                <input type="text" class="form-control" id="name" name="fullname" value="{{ data.name }}" placeholder="Enter your full name" required />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="email" class="form-label">Email Address</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-envelope"></i></span>#}
+{#                <input type="email" class="form-control" id="email" name="email" value="{{ data.email }}" placeholder="Enter your email" required />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="phone" class="form-label">Phone Number</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-telephone"></i></span>#}
+{#                <input type="tel" pattern="[0-9]{10}" class="form-control" id="phone" name="phoneno" value="{{ data.phone }}" placeholder="10-digit number" required />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-3">#}
+{#              <label for="place" class="form-label">Place</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text" class="form-control" id="place" name="place" value="{{ data.place }}" placeholder="Enter Place" required />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#              <div class="mb-3">#}
+{#              <label for="post" class="form-label">Post</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text" class="form-control" id="post" name="post" value="{{ data.post }}" placeholder="Enter Post" required />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#              <div class="mb-3">#}
+{#              <label for="pincode" class="form-label">Pincode</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text" class="form-control" id="pincode" name="pincode" value="{{ data.pin }}" placeholder="Enter Pincode" required />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#              <div class="mb-3">#}
+{#              <label for="district" class="form-label">District</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text" class="form-control" id="district" name="district" value="{{ data.district }}" placeholder="Enter District" required />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#              <div class="mb-3">#}
+{#              <label for="state" class="form-label">State</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text" class="form-control" id="state" name="state" value="{{ data.state }}" placeholder="Enter State" required />#}
+{#              </div>#}
+{#            </div>#}
+{#               <div class="mb-3">#}
+{#              <label for="description" class="form-label">Description</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>#}
+{#                <input type="text" class="form-control" id="description" name="description" value="{{ data.description }}" placeholder="Enter description" required />#}
+{#              </div>#}
+{##}
+{#            <div class="row mb-3">#}
+{#              <div class="col-md-6">#}
+{#                <label for="proof" class="form-label">Upload Proof</label>#}
+{#                   <img src="{{ data.proof }}" height="100px" width="100px">#}
+{#                <input type="file" class="form-control" id="proof" accept="image/*" />#}
+{#              </div>#}
+{#              <div class="col-md-6">#}
+{#                <label for="photo" class="form-label">Upload Photo</label>#}
+{#                  <img src="{{ data.photo }}" height="100px" width="100px">#}
+{#                <input type="file" class="form-control" id="photo" name="photo" accept="image/*" />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{##}
+{##}
+{#            <div class="d-grid">#}
+{#              <button type="submit" class="btn save-btn btn-lg shadow">Save Changes</button>#}
+{#            </div>#}
+{#          </form>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{##}
+{#{% endblock %}#}
+
+
+
+
+
+
+{% extends 'cp/index.html' %}
+{% block body %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+<style>
+  body {
+    background: linear-gradient(120deg, #1a5f5f 0%, #2d8b8b 100%);
+    min-height: 100vh;
+  }
+  .card {
+    border: none;
+    border-radius: 1.2rem;
+    box-shadow: 0 8px 28px rgba(26, 95, 95, 0.15);
+  }
+  .form-label {
+    font-weight: 500;
+    color: #1a5f5f;
+  }
+  .form-control:focus {
+    border-color: #2d8b8b;
+    box-shadow: 0 0 0 0.2rem rgba(45, 139, 139, 0.3);
+  }
+  .input-group-text {
+    background-color: #e0f2f2;
+    border-color: #2d8b8b;
+    color: #1a5f5f;
+  }
+  .save-btn {
+    background: #1a5f5f;
+    color: #f8ffff;
+    font-weight: bold;
+    letter-spacing: 1.1px;
+    border-radius: 0.5rem;
+    transition: background 0.2s;
+    border: none;
+  }
+  .save-btn:hover {
+    background: #2d8b8b;
+    color: #fff;
+  }
+  h2 {
+    color: #1a5f5f !important;
+  }
+</style>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+      <div class="card px-4 py-4">
+        <h2 class="mb-3 text-center fw-bold">Edit Profile</h2>
+
+        <form method="post" action="/myapp/edit_cprofile_post/" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-person"></i></span>
+              <input type="text" class="form-control" id="name" name="fullname" value="{{ data.name }}" placeholder="Enter your full name" required />
+            </div>
+          </div>
+
+             <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-person"></i></span>
+              <input type="text" class="form-control" id="email" name="email" value="{{ data.email }}" placeholder="Enter your email" required />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+              <input type="tel" pattern="[0-9]{10}" class="form-control" id="phone" name="phoneno" value="{{ data.phone }}" placeholder="10-digit number" required />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="place" class="form-label">Place</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+              <input type="text" class="form-control" id="place" name="place" value="{{ data.place }}" placeholder="Enter Place" required />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="post" class="form-label">Post</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+              <input type="text" class="form-control" id="post" name="post" value="{{ data.post }}" placeholder="Enter Post" required />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="pincode" class="form-label">Pincode</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+              <input type="text" class="form-control" id="pincode" name="pincode" value="{{ data.pin }}" placeholder="Enter Pincode" required />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="district" class="form-label">District</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+              <input type="text" class="form-control" id="district" name="district" value="{{ data.district }}" placeholder="Enter District" required />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="state" class="form-label">State</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-geo-alt"></i></span>
+              <input type="text" class="form-control" id="state" name="state" value="{{ data.state }}" placeholder="Enter State" required />
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-card-text"></i></span>
+              <input type="text" class="form-control" id="description" name="description" value="{{ data.description }}" placeholder="Enter description" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="photo" class="form-label">Upload Photo</label>
+              <img src="{{ data.photo }}" height="100px" width="100px" class="d-block mb-2 rounded">
+              <input type="file" class="form-control" id="photo" name="photo" accept="image/*" />
+            </div>
+          </div>
+
+             <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="photo" class="form-label">Upload Proof</label>
+              <img src="{{ data.proof }}" height="100px" width="100px" class="d-block mb-2 rounded">
+              <input type="file" class="form-control" id="proof" name="proof" accept="image/*" />
+            </div>
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn save-btn btn-lg shadow">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}

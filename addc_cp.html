@@ -1,0 +1,326 @@
+{% extends 'cp/index.html' %}
+{% block body %}
+
+<style>
+  body {
+{#    background: linear-gradient(135deg, #0d7377 0%, #14FFEC 100%);#}
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .card {
+    border: none;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #0d7377;
+    margin-bottom: 0.5rem;
+  }
+
+  .input-group-text {
+    background: #0d7377;
+    color: white;
+    border: none;
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+
+  .form-control {
+    border: 2px solid #e0e0e0;
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus {
+    border-color: #14FFEC;
+    box-shadow: 0 0 0 0.2rem rgba(20, 255, 236, 0.25);
+    outline: none;
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, #0d7377 0%, #14FFEC 100%);
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(13, 115, 119, 0.4);
+    background: linear-gradient(135deg, #0a5c5f 0%, #10d4c4 100%);
+  }
+
+  .header-title {
+    color: #0d7377;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  textarea.form-control {
+    border-radius: 0.5rem;
+  }
+
+  .input-group {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 0.5rem;
+  }
+</style>
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="card px-4 py-5">
+        <h2 class="mb-4 text-center header-title">Add Course Code</h2>
+        <form method="post" action="/myapp/addc_cp_post/" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="mb-4">
+            <label for="coursecode" class="form-label">Course Code</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-journal-bookmark"></i></span>
+              <input
+                type="text"
+                id="coursecode"
+                class="form-control"
+                name="coursecode"
+                placeholder="Enter course code"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="courseName" class="form-label">Course Name</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-journal-bookmark"></i></span>
+              <input
+                type="text"
+                id="courseName"
+                class="form-control"
+                name="coursename"
+                placeholder="Enter course name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="duration" class="form-label">Duration</label>
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-clock"></i></span>
+              <input
+                type="text"
+                id="duration"
+                name="duration"
+                class="form-control"
+                placeholder="e.g., 3 months"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="description" class="form-label">Course Description (optional)</label>
+            <textarea
+              name="description"
+              id="description"
+              class="form-control"
+              rows="4"
+              placeholder="Provide a brief description of the course"
+            ></textarea>
+          </div>
+
+          <div class="d-grid">
+            <button type="submit" class="btn submit-btn btn-lg shadow">Add Course</button>
+          </div>
+        </form>
+        {% for i in messages %}
+          {{ i }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}
+
+
+{#{% extends 'cp/index.html' %}#}
+{#{% block body %}#}
+{##}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8" />#}
+{#  <title>Add Course</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />#}
+{#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />#}
+{#  <style>#}
+{#    body {#}
+{#      background: linear-gradient(120deg, #ce94de 0%, #b7e0f7 100%);#}
+{#      min-height: 100vh;#}
+{#    }#}
+{#    .card {#}
+{#      border: none;#}
+{#      border-radius: 1.2rem;#}
+{#      box-shadow: 0 8px 28px rgba(130, 100, 160, 0.15);#}
+{#    }#}
+{#    .form-label {#}
+{#      font-weight: 500;#}
+{#      color: #7E57C2;#}
+{#    }#}
+{#    .form-control:focus {#}
+{#      border-color: #ce94de;#}
+{#      box-shadow: 0 0 0 0.2rem #ce94de50;#}
+{#    }#}
+{#    .submit-btn {#}
+{#      background: #7e57c2;#}
+{#      color: #f8f8ff;#}
+{#      font-weight: bold;#}
+{#      letter-spacing: 1.1px;#}
+{#      border-radius: 0.5rem;#}
+{#      transition: background 0.2s;#}
+{#    }#}
+{#    .submit-btn:hover {#}
+{#      background: #ce94de;#}
+{#      color: #333;#}
+{#    }#}
+{#    .header-title {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 700;#}
+{#      letter-spacing: 0.5px;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{#  <style>#}
+{#    body {#}
+{#      background: linear-gradient(120deg, #ce94de 0%, #b7e0f7 100%);#}
+{#      min-height: 100vh;#}
+{#    }#}
+{#    .card {#}
+{#      border: none;#}
+{#      border-radius: 1.2rem;#}
+{#      box-shadow: 0 8px 28px rgba(130, 100, 160, 0.15);#}
+{#    }#}
+{#    .form-label {#}
+{#      font-weight: 500;#}
+{#      color: #7E57C2;#}
+{#    }#}
+{#    .form-control:focus {#}
+{#      border-color: #ce94de;#}
+{#      box-shadow: 0 0 0 0.2rem #ce94de50;#}
+{#    }#}
+{#    .submit-btn {#}
+{#      background: #7e57c2;#}
+{#      color: #f8f8ff;#}
+{#      font-weight: bold;#}
+{#      letter-spacing: 1.1px;#}
+{#      border-radius: 0.5rem;#}
+{#      transition: background 0.2s;#}
+{#    }#}
+{#    .submit-btn:hover {#}
+{#      background: #ce94de;#}
+{#      color: #333;#}
+{#    }#}
+{#    .header-title {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 700;#}
+{#      letter-spacing: 0.5px;#}
+{#    }#}
+{#  </style>#}
+{##}
+{#  <div class="container py-5">#}
+{#    <div class="row justify-content-center">#}
+{#      <div class="col-lg-6 col-md-8">#}
+{#        <div class="card px-4 py-5">#}
+{#          <h2 class="mb-4 text-center header-title">Add Course Code</h2>#}
+{#          <form method="post" action="/myapp/addc_cp_post/" enctype="multipart/form-data">#}
+{#               {% csrf_token %}#}
+{#               <div class="mb-4">#}
+{#              <label for="coursecode" class="form-label">Course Code</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-journal-bookmark"></i></span>#}
+{#                <input#}
+{#                  type="text"#}
+{#                  id="coursecode"#}
+{#                  class="form-control"#}
+{#                   name="coursecode"#}
+{#                  placeholder="Enter course code"#}
+{#                  required#}
+{#                />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-4">#}
+{#              <label for="courseName" class="form-label">Course Name</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-journal-bookmark"></i></span>#}
+{#                <input#}
+{#                  type="text"#}
+{#                  id="courseName"#}
+{#                  class="form-control"#}
+{#                   name="coursename"#}
+{#                  placeholder="Enter course name"#}
+{#                  required#}
+{#                />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-4">#}
+{#              <label for="duration" class="form-label" >Duration</label>#}
+{#              <div class="input-group">#}
+{#                <span class="input-group-text"><i class="bi bi-clock"></i></span>#}
+{#                <input#}
+{#                  type="text"#}
+{#                  id="duration"#}
+{#                  name="duration"#}
+{#                  class="form-control"#}
+{#                  placeholder="e.g., 3 months"#}
+{#                  required#}
+{#                />#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="mb-4">#}
+{#              <label for="description" class="form-label" >Course Description (optional)</label>#}
+{##}
+{#              <textarea#}
+{#                name="description"#}
+{#                id="description"#}
+{#                class="form-control"#}
+{#                rows="4"#}
+{#                placeholder="Provide a brief description of the course"#}
+{#              ></textarea>#}
+{#            </div>#}
+{##}
+{#            <div class="d-grid">#}
+{#              <button type="submit" class="btn submit-btn btn-lg shadow">Add Course</button>#}
+{#            </div>#}
+{#          </form>#}
+{#            {% for i in messages %}#}
+{#            {{ i }}#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{##}
+{#{% endblock%}#}

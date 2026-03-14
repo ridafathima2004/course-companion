@@ -1,0 +1,329 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8" />#}
+{#  <title>My Courses</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />#}
+{#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />#}
+{#  <style>#}
+{#    body {#}
+{#      background: linear-gradient(120deg, #ce94de 0%, #b7e0f7 100%);#}
+{#      min-height: 100vh;#}
+{#    }#}
+{#    .header-title {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 700;#}
+{#      letter-spacing: 0.5px;#}
+{#    }#}
+{#    .course-card {#}
+{#      border-radius: 1.1rem;#}
+{#      box-shadow: 0 3px 22px rgba(130, 100, 160, 0.15);#}
+{#      border: none;#}
+{#      margin-bottom: 1.5rem;#}
+{#      background: rgba(248, 248, 255, 0.98);#}
+{#      transition: box-shadow 0.2s;#}
+{#    }#}
+{#    .course-card:hover {#}
+{#      box-shadow: 0 6px 30px #ce94de75;#}
+{#    }#}
+{#    .card-title {#}
+{#      color: #7E57C2;#}
+{#      font-weight: 600;#}
+{#    }#}
+{#    .course-detail {#}
+{#      color: #333;#}
+{#      font-size: 1.02em;#}
+{#    }#}
+{#    .edit-btn, .remove-btn {#}
+{#      border-radius: .4rem;#}
+{#      padding-left: 1.1em;#}
+{#      padding-right: 1.1em;#}
+{#      font-weight: 500;#}
+{#    }#}
+{#    .edit-btn {#}
+{#      background: #b7e0f7;#}
+{#      color: #7e57c2;#}
+{#      border: none;#}
+{#    }#}
+{#    .edit-btn:hover {#}
+{#      background: #7e57c2;#}
+{#      color: #fff;#}
+{#    }#}
+{#    .remove-btn {#}
+{#      background: #ffb3b3;#}
+{#      color: #b71c1c;#}
+{#      border: none;#}
+{#      margin-left: 0.5em;#}
+{#    }#}
+{#    .remove-btn:hover {#}
+{#      background: #e53935;#}
+{#      color: #fff;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{#  <div class="container py-5">#}
+{#    <h2 class="mb-4 text-center header-title">My Courses</h2>#}
+{#   {% for i in messages %}#}
+{#            {{ i }}#}
+{#            {% endfor %}#}
+{#    <div class="row justify-content-center">#}
+{#        {% for i in  data %}#}
+{##}
+{#      <!-- Example: Course List Start -->#}
+{#      <div class="col-lg-6 col-md-8">#}
+{#        <!-- Start of a Course Card (repeat for each course) -->#}
+{#        <div class="card course-card mb-4">#}
+{#          <div class="card-body">#}
+{#            <div class="d-flex align-items-center mb-2">#}
+{#              <i class="bi bi-journal-bookmark fs-3 me-3" style="color:#7e57c2;"></i>#}
+{#              <div>#}
+{#                <h5 class="card-title mb-1">{{ i.coursename }}</h5>#}
+{#                <span class="badge bg-light text-dark fw-normal" style="color:#7e57c2; border:1px solid #ce94de;">{{ i.duration }}</span>#}
+{#              </div>#}
+{#            </div>#}
+{#            <p class="card-text course-detail">#}
+{#                {{ i.description }}#}
+{#            </p>#}
+{#            <div class="mt-3">#}
+{#                <a href="/myapp/editc_cp/{{ i.id }}" class="btn edit-btn"><i class="bi bi-pencil-square"></i>Edit</a>#}
+{#              <button class="btn edit-btn"><i class="bi bi-pencil-square"></i> Edit</button>#}
+{#              <button class="btn remove-btn"><i class="bi bi-trash"></i> Remove</button>#}
+{#                <a href="/myapp/removecourse/{{ i.id }}" class="btn btn-danger" onclick="return confirm('Are You Sure?')"><i class="bi bi-trash"></i>Delete</a>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        </div>#}
+{#        <!-- Add more <div class="card course-card ..."> for each course -->#}
+{##}
+{#      <!-- Example: Course List End -->#}
+{#{% endfor %}#}
+{##}
+{#    </div>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{#{% extends 'cp/index.html' %}#}
+{#{% block body %}#}
+{##}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#  <meta charset="UTF-8" />#}
+{#  <title>My Videos</title>#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />#}
+{#  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />#}
+{#  <style>#}
+{#    body {#}
+{#      background: linear-gradient(120deg, #ce94de 0%, #b7e0f7 100%);#}
+{#      min-height: 100vh;#}
+{#    }#}
+{#    .header-title {#}
+{#      color: #7e57c2;#}
+{#      font-weight: 700;#}
+{#      letter-spacing: 0.5px;#}
+{#    }#}
+{#    .course-card {#}
+{#      border-radius: 1.1rem;#}
+{#      box-shadow: 0 3px 22px rgba(130, 100, 160, 0.15);#}
+{#      border: none;#}
+{#      margin-bottom: 1.5rem;#}
+{#      background: rgba(248, 248, 255, 0.98);#}
+{#      transition: box-shadow 0.2s;#}
+{#    }#}
+{#    .course-card:hover {#}
+{#      box-shadow: 0 6px 30px #ce94de75;#}
+{#    }#}
+{#    .card-title {#}
+{#      color: #7E57C2;#}
+{#      font-weight: 600;#}
+{#    }#}
+{#    .course-detail {#}
+{#      color: #333;#}
+{#      font-size: 1.02em;#}
+{#    }#}
+{#    .edit-btn {#}
+{#      background: #b7e0f7;#}
+{#      color: #7e57c2;#}
+{#      border: none;#}
+{#    }#}
+{#    .edit-btn:hover {#}
+{#      background: #7e57c2;#}
+{#      color: #fff;#}
+{#    }#}
+{#    .remove-btn {#}
+{#      background: #ffb3b3;#}
+{#      color: #b71c1c;#}
+{#      border: none;#}
+{#      margin-left: 0.5em;#}
+{#    }#}
+{#    .remove-btn:hover {#}
+{#      background: #e53935;#}
+{#      color: #fff;#}
+{#    }#}
+{#  </style>#}
+{#</head>#}
+{#<body>#}
+{#  <div class="container py-5">#}
+{#    <h2 class="mb-4 text-center header-title">My Uploaded Videos</h2>#}
+{#    {% for i in messages %}#}
+{#      {{ i }}#}
+{#    {% endfor %}#}
+{#    <div class="row justify-content-center">#}
+{#      {% for i in data %}#}
+{#      <div class="col-lg-6 col-md-8">#}
+{#        <div class="card course-card mb-4">#}
+{#          <div class="card-body">#}
+{##}
+{#            <!-- Video Preview -->#}
+{#            <div class="mb-3 text-center">#}
+{#              <video width="100%" controls>#}
+{#                <source src="{{ i.videoFile }}" type="video/mp4">#}
+{#                Your browser does not support the video tag.#}
+{#              </video>#}
+{#            </div>#}
+{##}
+{#            <!-- Title & Course Name -->#}
+{#            <h5 class="card-title mb-1">#}
+{#              <i class="bi bi-camera-video me-2"></i> {{ i.title }}#}
+{#            </h5>#}
+{#            <p class="course-detail mb-1"><strong>Course Name:</strong> {{ i.COURSE.coursename }}</p>#}
+{#            <p class="course-detail"><strong>Date:</strong> {{ i.date }}</p>#}
+{##}
+{#            <!-- Actions -->#}
+{#            <div class="mt-3">#}
+{#              <a href="/myapp/edit_video/{{ i.id }}#abc" class="btn edit-btn">#}
+{#                <i class="bi bi-pencil-square"></i> Edit#}
+{#              </a>#}
+{#              <a href="/myapp/delete_video/{{ i.id }}" class="btn btn-danger" onclick="return confirm('Are You Sure?')">#}
+{#                <i class="bi bi-trash"></i> Delete#}
+{#              </a>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#      {% endfor %}#}
+{#    </div>#}
+{#  </div>#}
+{#  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>#}
+{#</body>#}
+{#</html>#}
+{##}
+{#{% endblock %}#}
+
+
+
+
+
+
+
+{% extends 'cp/index.html' %}
+{% block body %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+<style>
+  body {
+{#    background: linear-gradient(120deg, #1a5f5f 0%, #2d8b8b 100%);#}
+    min-height: 100vh;
+  }
+  .header-title {
+    color: #1a5f5f;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .course-card {
+    border-radius: 1.1rem;
+    box-shadow: 0 3px 22px rgba(26, 95, 95, 0.15);
+    border: none;
+    margin-bottom: 1.5rem;
+    background: rgba(248, 255, 255, 0.98);
+    transition: box-shadow 0.2s;
+  }
+  .course-card:hover {
+    box-shadow: 0 6px 30px rgba(45, 139, 139, 0.45);
+  }
+  .card-title {
+    color: #1a5f5f;
+    font-weight: 600;
+  }
+  .course-detail {
+    color: #333;
+    font-size: 1.02em;
+  }
+  .edit-btn {
+    background: #5fb3b3;
+    color: #fff;
+    border: none;
+    border-radius: .4rem;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    font-weight: 500;
+  }
+  .edit-btn:hover {
+    background: #1a5f5f;
+    color: #fff;
+  }
+  .remove-btn {
+    background: #ffb3b3;
+    color: #b71c1c;
+    border: none;
+    margin-left: 0.5em;
+    border-radius: .4rem;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    font-weight: 500;
+  }
+  .remove-btn:hover {
+    background: #e53935;
+    color: #fff;
+  }
+</style>
+
+<div class="container py-5">
+  <h2 class="mb-4 text-center header-title">My Uploaded Videos</h2>
+  {% for i in messages %}
+    {{ i }}
+  {% endfor %}
+  <div class="row justify-content-center">
+    {% for i in data %}
+    <div class="col-lg-6 col-md-8">
+      <div class="card course-card mb-4">
+        <div class="card-body">
+
+          <!-- Video Preview -->
+          <div class="mb-3 text-center">
+            <video width="100%" controls>
+              <source src="{{ i.videoFile }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <!-- Title & Course Name -->
+          <h5 class="card-title mb-1">
+            <i class="bi bi-camera-video me-2"></i> {{ i.title }}
+          </h5>
+          <p class="course-detail mb-1"><strong>Course Name:</strong> {{ i.COURSE.coursename }}</p>
+          <p class="course-detail"><strong>Date:</strong> {{ i.date }}</p>
+
+          <!-- Actions -->
+          <div class="mt-3">
+            <a href="/myapp/edit_video/{{ i.id }}#abc" class="btn edit-btn">
+              <i class="bi bi-pencil-square"></i> Edit
+            </a>
+            <a href="/myapp/delete_video/{{ i.id }}" class="btn btn-danger" onclick="return confirm('Are You Sure?')">
+              <i class="bi bi-trash"></i> Delete
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}

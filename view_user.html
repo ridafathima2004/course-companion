@@ -1,0 +1,675 @@
+{% extends 'admin/adminindex.html' %}
+{% block body %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* White background for content area */
+    .content-wrapper {
+      background: white;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    /* Main container styling */
+    .users-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(107, 63, 160, 0.1);
+      padding: 2.5rem;
+      max-width: 1600px;
+      margin: 0 auto;
+      border: 2px solid #F0E6FF;
+      overflow: hidden; /* Prevent container overflow */
+    }
+
+    /* Header banner */
+    .page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .page-header h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      background: linear-gradient(135deg, #6B3FA0, #8B5FBF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .page-header h2 i {
+      background: linear-gradient(135deg, #6B3FA0, #8B5FBF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2.2rem;
+    }
+
+    .page-subtitle {
+      color: #8B5FBF;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* Users badge */
+    .status-badge {
+      background: linear-gradient(135deg, #6B3FA0, #8B5FBF);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .status-badge i {
+      margin-right: 5px;
+    }
+
+    /* Table wrapper for horizontal scroll */
+    .table-responsive {
+      overflow-x: auto;
+      margin-top: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(107, 63, 160, 0.1);
+    }
+
+    /* DataTable header styling */
+    #registrationTable thead th {
+      background: linear-gradient(135deg, #6B3FA0, #8B5FBF) !important;
+      color: white !important;
+      border: none !important;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 15px !important;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      vertical-align: middle;
+      white-space: nowrap; /* Prevent header text wrapping */
+    }
+
+    /* Table styling */
+    #registrationTable {
+      border-collapse: separate !important;
+      border-spacing: 0 !important;
+      width: 100% !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* Zebra striping */
+    #registrationTable tbody tr {
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    #registrationTable tbody tr:nth-child(odd) {
+      background-color: #F0E6FF;
+    }
+
+    /* Hover highlight */
+    #registrationTable tbody tr:hover {
+      background-color: #E8D9FF !important;
+      transform: scale(1.002);
+      box-shadow: 0 4px 12px rgba(107, 63, 160, 0.15);
+    }
+
+    #registrationTable tbody td {
+      vertical-align: middle;
+      padding: 12px !important;
+      border-color: #E8D9FF !important;
+      white-space: nowrap; /* Prevent text wrapping in cells */
+    }
+
+    /* Strong name styling */
+    #registrationTable tbody td strong {
+      color: #4A2870;
+      font-weight: 600;
+    }
+
+    /* Image styling */
+    #registrationTable tbody td img {
+      border: 3px solid #6B3FA0;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(107, 63, 160, 0.2);
+    }
+
+    #registrationTable tbody td img:hover {
+      transform: scale(1.5);
+      box-shadow: 0 8px 24px rgba(107, 63, 160, 0.4);
+      z-index: 1000;
+      position: relative;
+    }
+
+    /* DataTables controls */
+    .dataTables_wrapper .dataTables_length,
+    .dataTables_wrapper .dataTables_filter {
+      margin-bottom: 1rem;
+    }
+
+    .dataTables_wrapper .dataTables_length select,
+    .dataTables_wrapper .dataTables_filter input {
+      border: 2px solid #8B5FBF;
+      border-radius: 8px;
+      padding: 5px 10px;
+      transition: all 0.3s ease;
+    }
+
+    .dataTables_wrapper .dataTables_length select:focus,
+    .dataTables_wrapper .dataTables_filter input:focus {
+      outline: none;
+      border-color: #6B3FA0;
+      box-shadow: 0 0 0 0.2rem rgba(107, 63, 160, 0.25);
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+      background: linear-gradient(135deg, #6B3FA0, #8B5FBF) !important;
+      border: none !important;
+      color: white !important;
+      border-radius: 5px;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+      background: linear-gradient(135deg, #8B5FBF, #6B3FA0) !important;
+      border: none !important;
+      color: white !important;
+    }
+
+    .dataTables_wrapper .dataTables_info {
+      color: #6B3FA0;
+      font-weight: 500;
+    }
+
+    .dataTables_wrapper .dataTables_length label,
+    .dataTables_wrapper .dataTables_filter label {
+      color: #4A2870;
+      font-weight: 500;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .users-container {
+        padding: 1.5rem 1rem;
+      }
+
+      .page-header h2 {
+        font-size: 1.5rem;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      #registrationTable tbody td img {
+        width: 70px;
+        height: 70px;
+      }
+
+      #registrationTable tbody td {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+  <div class="content-wrapper">
+    <div class="users-container">
+      <div class="page-header">
+        <h2>
+          <i class="fas fa-users"></i>
+          Registered Users
+        </h2>
+        <div class="page-subtitle">
+          <i class="fas fa-user-check"></i> Complete User Database and Information
+        </div>
+      </div>
+
+      <div class="text-center">
+        <span class="status-badge">
+          <i class="fas fa-database"></i>
+          All Registered Users
+        </span>
+      </div>
+
+      <div class="table-responsive">
+        <table id="registrationTable" class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th><i class="fas fa-hashtag"></i> Sl.No</th>
+              <th><i class="fas fa-user"></i> Name</th>
+              <th><i class="fas fa-envelope"></i> Email</th>
+              <th><i class="fas fa-phone"></i> Phone</th>
+              <th><i class="fas fa-home"></i> Place</th>
+              <th><i class="fas fa-mail-bulk"></i> Post</th>
+              <th><i class="fas fa-map-pin"></i> Pincode</th>
+              <th><i class="fas fa-city"></i> District</th>
+              <th><i class="fas fa-flag"></i> State</th>
+              <th><i class="fas fa-camera"></i> Photo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in data %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td><strong>{{ i.name }}</strong></td>
+              <td>{{ i.email }}</td>
+              <td>{{ i.phone }}</td>
+              <td>{{ i.place }}</td>
+              <td>{{ i.post }}</td>
+              <td>{{ i.pin }}</td>
+              <td>{{ i.district }}</td>
+              <td>{{ i.state }}</td>
+              <td><img src="{{ i.photo }}" alt="User Photo"></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  {% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#registrationTable').DataTable({
+        pageLength: 10,
+        order: [[1, 'asc']], // Sort by name alphabetically
+        scrollX: true, // Enable horizontal scrolling
+        language: {
+          search: "Search Users:",
+          lengthMenu: "Show _MENU_ users per page",
+          info: "Showing _START_ to _END_ of _TOTAL_ registered users",
+          paginate: {
+            previous: "← Previous",
+            next: "Next →"
+          }
+        }
+      });
+    });
+  </script>
+  {% endblock %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+{##}
+{#{% extends 'admin/adminindex.html' %}#}
+{#{% block body %}#}
+{# <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <!-- DataTables CSS -->#}
+{#  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{##}
+{#  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{##}
+{#  <div class="container mt-5">#}
+{#    <h2 class="mb-4">Registered Users</h2>#}
+{#    <table id="registrationTable" class="table table-striped table-bordered">#}
+{#      <thead>#}
+{#        <tr>#}
+{#          <th>Sl/No</th>#}
+{#          <th>Name</th>#}
+{#          <th>Email</th>#}
+{#          <th>Phone</th>#}
+{#          <th>Place</th>#}
+{#          <th>Post</th>#}
+{#          <th>Pincode</th>#}
+{#          <th>District</th>#}
+{#          <th>State</th>#}
+{#          <th>Photo</th>#}
+{#        </tr>#}
+{#      </thead>#}
+{#      <tbody>#}
+{#        <!-- Sample Data Row -->#}
+{#         {% for i in data %}#}
+{#        <tr>#}
+{#          <td>{{ forloop.counter }}</td>#}
+{#          <td>{{ i.name }}</td>#}
+{#          <td>{{ i.email }}</td>#}
+{#          <td>{{ i.phone}}</td>#}
+{#          <td>{{ i.place}}</td>#}
+{#          <td>{{ i.post}}</td>#}
+{#          <td>{{ i.pin }}</td>#}
+{#          <td>{{ i.district}}</td>#}
+{#          <td>{{ i.state}}</td>#}
+{#            <td><img src="{{ i.photo }}" height="100px" width="100px"></td>#}
+{#          <td><img src="https://via.placeholder.com/50" class="img-thumbnail" width="50" /></td>#}
+{#        </tr>#}
+{#        {% endfor %}#}
+{#        <tr>#}
+{#          <td>2</td>#}
+{#          <td>Priya Singh</td>#}
+{#          <td>Female</td>#}
+{#          <td>1998-12-05</td>#}
+{#          <td>priya@example.com</td>#}
+{#          <td>9123456789</td>#}
+{#          <td>Anna Nagar</td>#}
+{#          <td>Chennai</td>#}
+{#          <td>Tamil Nadu</td>#}
+{#          <td>600040</td>#}
+{#          <td><img src="https://via.placeholder.com/50" class="img-thumbnail" width="50" /></td>#}
+{#        </tr>#}
+{#        <!-- Add more rows dynamically from backend -->#}
+{#      </tbody>#}
+{#    </table>#}
+{#  </div>#}
+{##}
+{#  <!-- Scripts -->#}
+{#  {% block scripts %}#}
+{#  <script>#}
+{#    $(document).ready(function () {#}
+{#      $('#registrationTable').DataTable();#}
+{#    });#}
+{#  </script>#}
+{##}
+{#      {% endblock %}#}
+{##}
+{##}
+{##}
+{#{% endblock %}#}
+{##}
+{##}
+{##}
+{##}
+{#{% extends 'admin/adminindex.html' %}#}
+{#{% block body %}#}
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">#}
+{#  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">#}
+{#  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">#}
+{##}
+{#  <style>#}
+{#    /* White background for content area */#}
+{#    .content-wrapper {#}
+{#      background: white;#}
+{#      min-height: 100vh;#}
+{#      padding: 2rem 1rem;#}
+{#       #}
+{#    }#}
+{##}
+{#    /* Main container styling */#}
+{#    .users-container {#}
+{#      background: white;#}
+{#      border-radius: 20px;#}
+{#      box-shadow: 0 4px 20px rgba(107, 63, 160, 0.1);#}
+{#      padding: 2.5rem;#}
+{#      max-width: 1600px;#}
+{#      margin: 0 auto;#}
+{#      border: 2px solid #F0E6FF;#}
+{#    }#}
+{##}
+{#    /* Header banner */#}
+{#    .page-header {#}
+{#      text-align: center;#}
+{#      margin-bottom: 2rem;#}
+{#    }#}
+{##}
+{#    .page-header h2 {#}
+{#      font-weight: 700;#}
+{#      font-size: 2rem;#}
+{#      background: linear-gradient(135deg, #6B3FA0, #8B5FBF);#}
+{#      -webkit-background-clip: text;#}
+{#      -webkit-text-fill-color: transparent;#}
+{#      background-clip: text;#}
+{#      margin-bottom: 0.5rem;#}
+{#      display: inline-flex;#}
+{#      align-items: center;#}
+{#      gap: 15px;#}
+{#    }#}
+{##}
+{#    .page-header h2 i {#}
+{#      background: linear-gradient(135deg, #6B3FA0, #8B5FBF);#}
+{#      -webkit-background-clip: text;#}
+{#      -webkit-text-fill-color: transparent;#}
+{#      background-clip: text;#}
+{#      font-size: 2.2rem;#}
+{#    }#}
+{##}
+{#    .page-subtitle {#}
+{#      color: #8B5FBF;#}
+{#      font-size: 0.95rem;#}
+{#      font-weight: 500;#}
+{#    }#}
+{##}
+{#    /* Users badge */#}
+{#    .status-badge {#}
+{#      background: linear-gradient(135deg, #6B3FA0, #8B5FBF);#}
+{#      color: white;#}
+{#      padding: 8px 20px;#}
+{#      border-radius: 25px;#}
+{#      font-weight: 600;#}
+{#      font-size: 0.9rem;#}
+{#      display: inline-block;#}
+{#      margin-bottom: 1rem;#}
+{#    }#}
+{##}
+{#    .status-badge i {#}
+{#      margin-right: 5px;#}
+{#    }#}
+{##}
+{#    /* DataTable header styling */#}
+{#    #registrationTable thead th {#}
+{#      background: linear-gradient(135deg, #6B3FA0, #8B5FBF) !important;#}
+{#      color: white !important;#}
+{#      border: none !important;#}
+{#      font-weight: 600;#}
+{#      letter-spacing: 0.5px;#}
+{#      padding: 15px !important;#}
+{#      text-transform: uppercase;#}
+{#      font-size: 0.85rem;#}
+{#      vertical-align: middle;#}
+{#    }#}
+{##}
+{#    /* Table styling */#}
+{#    #registrationTable {#}
+{#      border-collapse: separate !important;#}
+{#      border-spacing: 0 !important;#}
+{#      width: 100% !important;#}
+{#    }#}
+{##}
+{#    /* Zebra striping */#}
+{#    #registrationTable tbody tr {#}
+{#      background-color: white;#}
+{#      transition: all 0.3s ease;#}
+{#    }#}
+{##}
+{#    #registrationTable tbody tr:nth-child(odd) {#}
+{#      background-color: #F0E6FF;#}
+{#    }#}
+{##}
+{#    /* Hover highlight */#}
+{#    #registrationTable tbody tr:hover {#}
+{#      background-color: #E8D9FF !important;#}
+{#      transform: scale(1.002);#}
+{#      box-shadow: 0 4px 12px rgba(107, 63, 160, 0.15);#}
+{#    }#}
+{##}
+{#    #registrationTable tbody td {#}
+{#      vertical-align: middle;#}
+{#      padding: 12px !important;#}
+{#      border-color: #E8D9FF !important;#}
+{#    }#}
+{##}
+{#    /* Strong name styling */#}
+{#    #registrationTable tbody td strong {#}
+{#      color: #4A2870;#}
+{#      font-weight: 600;#}
+{#    }#}
+{##}
+{#    /* Image styling */#}
+{#    #registrationTable tbody td img {#}
+{#      border: 3px solid #6B3FA0;#}
+{#      border-radius: 10px;#}
+{#      transition: transform 0.3s ease;#}
+{#      cursor: pointer;#}
+{#      width: 100px;#}
+{#      height: 100px;#}
+{#      object-fit: cover;#}
+{#      box-shadow: 0 2px 8px rgba(107, 63, 160, 0.2);#}
+{#    }#}
+{##}
+{#    #registrationTable tbody td img:hover {#}
+{#      transform: scale(1.5);#}
+{#      box-shadow: 0 8px 24px rgba(107, 63, 160, 0.4);#}
+{#      z-index: 1000;#}
+{#      position: relative;#}
+{#    }#}
+{##}
+{#    /* DataTables controls */#}
+{#    .dataTables_wrapper .dataTables_length select,#}
+{#    .dataTables_wrapper .dataTables_filter input {#}
+{#      border: 2px solid #8B5FBF;#}
+{#      border-radius: 8px;#}
+{#      padding: 5px 10px;#}
+{#      transition: all 0.3s ease;#}
+{#    }#}
+{##}
+{#    .dataTables_wrapper .dataTables_length select:focus,#}
+{#    .dataTables_wrapper .dataTables_filter input:focus {#}
+{#      outline: none;#}
+{#      border-color: #6B3FA0;#}
+{#      box-shadow: 0 0 0 0.2rem rgba(107, 63, 160, 0.25);#}
+{#    }#}
+{##}
+{#    .dataTables_wrapper .dataTables_paginate .paginate_button.current {#}
+{#      background: linear-gradient(135deg, #6B3FA0, #8B5FBF) !important;#}
+{#      border: none !important;#}
+{#      color: white !important;#}
+{#      border-radius: 5px;#}
+{#    }#}
+{##}
+{#    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {#}
+{#      background: linear-gradient(135deg, #8B5FBF, #6B3FA0) !important;#}
+{#      border: none !important;#}
+{#      color: white !important;#}
+{#    }#}
+{##}
+{#    .dataTables_wrapper .dataTables_info {#}
+{#      color: #6B3FA0;#}
+{#      font-weight: 500;#}
+{#    }#}
+{##}
+{#    .dataTables_wrapper .dataTables_length label,#}
+{#    .dataTables_wrapper .dataTables_filter label {#}
+{#      color: #4A2870;#}
+{#      font-weight: 500;#}
+{#    }#}
+{##}
+{#    /* Responsive adjustments */#}
+{#    @media (max-width: 768px) {#}
+{#      .users-container {#}
+{#        padding: 1.5rem 1rem;#}
+{#      }#}
+{##}
+{#      .page-header h2 {#}
+{#        font-size: 1.5rem;#}
+{#        flex-direction: column;#}
+{#        gap: 5px;#}
+{#      }#}
+{##}
+{#      #registrationTable tbody td img {#}
+{#        width: 70px;#}
+{#        height: 70px;#}
+{#      }#}
+{#    }#}
+{#  </style>#}
+{##}
+{#  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>#}
+{#  <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>#}
+{##}
+{#  <div class="content-wrapper" style="padding-right: 100px">#}
+{#    <div class="users-container">#}
+{#      <div class="page-header">#}
+{#        <h2>#}
+{#          <i class="fas fa-users"></i>#}
+{#          Registered Users#}
+{#        </h2>#}
+{#        <div class="page-subtitle">#}
+{#          <i class="fas fa-user-check"></i> Complete User Database and Information#}
+{#        </div>#}
+{#      </div>#}
+{##}
+{#      <div class="text-center">#}
+{#        <span class="status-badge">#}
+{#          <i class="fas fa-database"></i>#}
+{#          All Registered Users#}
+{#        </span>#}
+{#      </div>#}
+{##}
+{#      <table id="registrationTable" class="table table-striped table-bordered">#}
+{#        <thead>#}
+{#          <tr>#}
+{#            <th><i class="fas fa-hashtag"></i> Sl.No</th>#}
+{#            <th><i class="fas fa-user"></i> Name</th>#}
+{#            <th><i class="fas fa-envelope"></i> Email</th>#}
+{#            <th><i class="fas fa-phone"></i> Phone</th>#}
+{#            <th><i class="fas fa-home"></i> Place</th>#}
+{#            <th><i class="fas fa-mail-bulk"></i> Post</th>#}
+{#            <th><i class="fas fa-map-pin"></i> Pincode</th>#}
+{#            <th><i class="fas fa-city"></i> District</th>#}
+{#            <th><i class="fas fa-flag"></i> State</th>#}
+{#            <th><i class="fas fa-camera"></i> Photo</th>#}
+{#          </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
+{#          {% for i in data %}#}
+{#          <tr>#}
+{#            <td>{{ forloop.counter }}</td>#}
+{#            <td><strong>{{ i.name }}</strong></td>#}
+{#            <td>{{ i.email }}</td>#}
+{#            <td>{{ i.phone }}</td>#}
+{#            <td>{{ i.place }}</td>#}
+{#            <td>{{ i.post }}</td>#}
+{#            <td>{{ i.pin }}</td>#}
+{#            <td>{{ i.district }}</td>#}
+{#            <td>{{ i.state }}</td>#}
+{#            <td><img src="{{ i.photo }}" alt="User Photo"></td>#}
+{#          </tr>#}
+{#          {% endfor %}#}
+{#        </tbody>#}
+{#      </table>#}
+{#    </div>#}
+{#  </div>#}
+{##}
+{#  {% block scripts %}#}
+{#  <script>#}
+{#    $(document).ready(function () {#}
+{#      $('#registrationTable').DataTable({#}
+{#        pageLength: 10,#}
+{#        order: [[1, 'asc']], // Sort by name alphabetically#}
+{#        language: {#}
+{#          search: "Search Users:",#}
+{#          lengthMenu: "Show _MENU_ users per page",#}
+{#          info: "Showing _START_ to _END_ of _TOTAL_ registered users",#}
+{#          paginate: {#}
+{#            previous: "← Previous",#}
+{#            next: "Next →"#}
+{#          }#}
+{#        }#}
+{#      });#}
+{#    });#}
+{#  </script>#}
+{#  {% endblock %}#}
+{##}
+{#{% endblock %}#}
