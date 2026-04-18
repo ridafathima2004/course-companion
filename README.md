@@ -6,12 +6,13 @@ An AI-powered learning platform that helps students get answers strictly from th
  
 When students watch course videos, they often have doubts — but searching the internet gives too much unrelated information. Course Companion solves this by providing an AI assistant that answers questions only from the uploaded course video content, keeping learners focused and on track.
 
-Features
+ Features
 Video-based AI assistance — AI answers are generated strictly from video transcriptions, not from the wider internet
 Course material upload — Course providers can upload videos and materials to the platform
 AI doubt clarification — Students ask questions and get answers sourced only from their course content
 Admin panel — Manage course providers, users, approvals, and reviews
 Cross-platform — Works on both web browser and Android
+
  Technologies Used
 Layer            Technology
 Backend          Python (Django)
@@ -28,7 +29,7 @@ Student enrolls in a course and asks doubts via the AI chatbot
 AI searches only the transcribed content and returns a relevant answer
 No outside information is mixed in — keeping learning focused
 
-My Role
+ My Role
 I was the Team Lead and primary developer for this project (team of 4).
 
 Led project planning, system architecture, and documentation
@@ -37,7 +38,7 @@ Designed the UI/UX for all screens
 Integrated the AI video transcription and chatbot (chat_bot.py, videototext.py)
 Coordinated team tasks and managed timelines
 
-Project Structure (Key Files)
+ Project Structure (Key Files)
 
 course-companion/
 ├── views.py          # Core application logic
