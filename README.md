@@ -8,9 +8,13 @@ When students watch course videos, they often have doubts — but searching the 
 
  Features
 Video-based AI assistance — AI answers are generated strictly from video transcriptions, not from the wider internet
+
 Course material upload — Course providers can upload videos and materials to the platform
+
 AI doubt clarification — Students ask questions and get answers sourced only from their course content
+
 Admin panel — Manage course providers, users, approvals, and reviews
+
 Cross-platform — Works on both web browser and Android
 
  Technologies Used
@@ -42,12 +46,19 @@ Coordinated team tasks and managed timelines
 
 course-companion/
 ├── views.py          # Core application logic
+
 ├── models.py         # Database models
+
 ├── urls.py           # URL routing
+
 ├── chat_bot.py       # AI chatbot logic
+
 ├── videototext.py    # Video transcription module
+
 ├── settings.py       # Django configuration
+
 ├── templates/        # HTML pages (login, dashboard, course views)
+
 └── manage.py         # Django project manager
 
 How to Run Locally
